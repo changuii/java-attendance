@@ -197,13 +197,13 @@ public class AttendanceSystemTest {
             // given
             final String crewName = "name";
             final Crew crew = Crew.of(crewName, TODAY);
-            final AttendanceSystem attendanceSystem = new AttendanceSystem(List.of());
+            final AttendanceSystem attendanceSystem = new AttendanceSystem(List.of(crew));
             final LocalDate christmas = LocalDate.of(2024, 12, 25);
 
             // when & then
             assertThatThrownBy(() -> attendanceSystem.validateUpdateAttendanceDay(crewName, 25, christmas))
                     .isInstanceOf(IllegalArgumentException.class)
-                    .hasMessageContaining(ErrorMessage.INVALID_DATE_FORMAT.getMessage());
+                    .hasMessageContaining(ErrorMessage.INVALID_DATE.getMessage());
         }
 
     }
